@@ -1,0 +1,45 @@
+{
+    "status": [
+        {
+            "id": 1,
+            "status": "pending"
+        },
+        {
+            "id": 2,
+            "status": "processing"
+        },
+        {
+            "id": 3,
+            "status": "Suspected"
+        },
+        {
+            "id": 4,
+            "status": "pending payment"
+        },
+        {
+            "id": 5,
+            "status": "payment review"
+        },
+        {
+            "id": 6,
+            "status": "hold"
+        },
+        {
+            "id": 7,
+            "status": "open"
+        },
+        {
+            "id": 8,
+            "status": "complete"
+        },
+        {
+            "id": 9,
+            "status": "closed"
+        },
+        {
+            "id": 10,
+            "status": "canceles"
+        }
+    
+    ]
+}
