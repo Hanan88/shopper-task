@@ -16,6 +16,10 @@ const Search = ({ orders, setOrders }) => {
     });
     setOrders(filterData);
   };
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    handleFilter(searchTerm)
+  };
 
   console.log(searchTerm, "====");
   return (
@@ -29,7 +33,7 @@ const Search = ({ orders, setOrders }) => {
           className="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleChange}
         />
       </div>
     </div>
