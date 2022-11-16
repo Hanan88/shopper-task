@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Filter = () => {
   const [open, setOpen] = useState(false);
+  const [status, setStatus] = useState([]);
+
+  const getStatus = () => {
+    fetch(process.env.PUBLIC_URL + "Data/Status.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus(data.status);
+      });
+  };
+  useEffect(() => {
+    getStatus();
+  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -17,7 +34,6 @@ const Filter = () => {
           aria-describedby="basic-addon3"
         />
       </div>
-
       <div>
         <label htmlFor="basic-url">Purchase Date to</label>
         <input
@@ -92,7 +108,6 @@ const Filter = () => {
           aria-describedby="basic-addon3"
         />
       </div>
-
       <div>
         <label htmlFor="basic-url">Shipping cost to</label>
 
@@ -143,19 +158,17 @@ const Filter = () => {
 
       <div>
         <label htmlFor="status">status</label>
-        <select name="status" id="status">
-          {}
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+        <select name="status" id="status" className="form-control">
+          {status.length > 0
+            ? status.map((item) => (
+                <option value={item.id} key={item.id}>{item.status}</option>
+              ))
+            : null}
         </select>
       </div>
 
-      {/* <div className="w-50 mb-3"></div> */}
     </div>
   );
-
   return (
     <div>
       <button type="button" className="btn_filter" onClick={handleOpen}>

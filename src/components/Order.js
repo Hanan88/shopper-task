@@ -20,14 +20,28 @@ const Order = () => {
     getOrder();
   }, []);
 
-  console.log(orders, "orders");
+  const handleChange = (e) => {
+    const { name, checked } = e.target;
+    if (name === "allSelect") {
+      let tempOrder = orders.map((order) => {
+        return { ...order, isChecked: checked };
+      });
+      setOrders(tempOrder);
+    } else {
+      let tempOrder = orders.map((order) =>
+        order.customerName === name ? { ...order, isChecked: checked } : order
+      );
+      setOrders(tempOrder);
+    }
+  };
+
   return (
     <div>
       <table className="table">
         <thead>
           <tr>
             <th scope="col">
-              <input type="checkbox" />
+              <input type="checkbox" name="allSelect" onChange={handleChange} />
             </th>
             <th scope="col">ID</th>
             <th scope="col">Order Created</th>
@@ -48,29 +62,36 @@ const Order = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.length > 0 ? orders.map((order) => (
-            <tr key={order.id}>
-              <td scope="row">
-                <input type="checkbox" />
-              </td>
-              <td>{order.id}</td>
-              <td>{order.orderDate}</td>
-              <td>{order.billName}</td>
-              <td>{order.shippingName}</td>
-              <td>{order.grandTotalBase}</td>
-              <td>{order.grandTotalPurchased}</td>
-              <td>{order.status}</td>
-              <td>{order.billAddress}</td>
-              <td>{order.shippingAddress}</td>
-              <td>{order.customerEmail}</td>
-              <td>{order.customerGroup}</td>
-              <td>{order.subTotal}</td>
-              <td>{order.shippingFees}</td>
-              <td>{order.customerName}</td>
-              <td>{order.paymentMethod}</td>
-              <td>{order.totalRefund}</td>
-            </tr>
-          )) : null}
+          {orders.length > 0
+            ? orders.map((order) => (
+                <tr key={order.id}>
+                  <td scope="row">
+                    <input
+                      type="checkbox"
+                      name={order.customerName}
+                      onChange={handleChange}
+                      checked={order?.isChecked || false}
+                    />
+                  </td>
+                  <td>{order.id}</td>
+                  <td>{order.orderDate}</td>
+                  <td>{order.billName}</td>
+                  <td>{order.shippingName}</td>
+                  <td>{order.grandTotalBase}</td>
+                  <td>{order.grandTotalPurchased}</td>
+                  <td>{order.status}</td>
+                  <td>{order.billAddress}</td>
+                  <td>{order.shippingAddress}</td>
+                  <td>{order.customerEmail}</td>
+                  <td>{order.customerGroup}</td>
+                  <td>{order.subTotal}</td>
+                  <td>{order.shippingFees}</td>
+                  <td>{order.customerName}</td>
+                  <td>{order.paymentMethod}</td>
+                  <td>{order.totalRefund}</td>
+                </tr>
+              ))
+            : null}
         </tbody>
       </table>
       {/* Modal */}
