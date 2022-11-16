@@ -44,6 +44,18 @@ const Filter = () => {
         />
       </div>
       <div>
+        <label htmlFor="status">status</label>
+        <select name="status" id="status" className="form-select">
+          {status.length > 0
+            ? status.map((item) => (
+                <option value={item.id} key={item.id}>
+                  {item.status}
+                </option>
+              ))
+            : null}
+        </select>
+      </div>
+      <div>
         <label htmlFor="basic-url">Total base from</label>
         <input
           type="number"
@@ -52,6 +64,7 @@ const Filter = () => {
           aria-describedby="basic-addon3"
         />
       </div>
+
       <div>
         <label htmlFor="basic-url">Total base to</label>
         <input
@@ -155,22 +168,10 @@ const Filter = () => {
           aria-describedby="basic-addon3"
         />
       </div>
-
-      <div>
-        <label htmlFor="status">status</label>
-        <select name="status" id="status" className="form-control">
-          {status.length > 0
-            ? status.map((item) => (
-                <option value={item.id} key={item.id}>{item.status}</option>
-              ))
-            : null}
-        </select>
-      </div>
-
     </div>
   );
   return (
-    <div>
+    <div className="text-end">
       <button type="button" className="btn_filter" onClick={handleOpen}>
         Filters
       </button>

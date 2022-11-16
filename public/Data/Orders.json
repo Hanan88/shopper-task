@@ -32,7 +32,7 @@
       "customerGroup": "ABGroup",
       "subTotal": "100.00",
       "shippingFees": "100.00",
-      "customerName": "Mick",
+      "customerName": "Jou",
       "paymentMethod": "visa",
       "totalRefund": "100.00"
     },
@@ -50,7 +50,7 @@
       "customerGroup": "ABGroup",
       "subTotal": "100.00",
       "shippingFees": "100.00",
-      "customerName": "Mick",
+      "customerName": "Moe",
       "paymentMethod": "visa",
       "totalRefund": "100.00"
     },
@@ -68,7 +68,7 @@
       "customerGroup": "ABGroup",
       "subTotal": "100.00",
       "shippingFees": "100.00",
-      "customerName": "Mick",
+      "customerName": "Billy",
       "paymentMethod": "visa",
       "totalRefund": "100.00"
     }

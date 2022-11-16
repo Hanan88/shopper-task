@@ -1,25 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Order = () => {
-  const [orders, setOrders] = useState([]);
-
-  const getOrder = () => {
-    fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setOrders(data.orders);
-      });
-  };
-
-  useEffect(() => {
-    getOrder();
-  }, []);
-
+const Order = ({ orders, setOrders }) => {
   const handleChange = (e) => {
     const { name, checked } = e.target;
     if (name === "allSelect") {
@@ -34,7 +15,6 @@ const Order = () => {
       setOrders(tempOrder);
     }
   };
-
   return (
     <div>
       <table className="table">

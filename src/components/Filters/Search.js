@@ -1,9 +1,25 @@
-import React from "react";
-import Filter from "./Filter";
+import React, { useState } from "react";
 
-const Search = () => {
+const Search = ({ orders, setOrders }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleFilter = (customerName) => {
+    const filterData = orders.filter((item) => {
+      if (
+        item.customerName
+          .toString()
+          .toLowerCase()
+          .includes(customerName.toLowerCase())
+      ) {
+        return item;
+      }
+    });
+    setOrders(filterData);
+  };
+
+  console.log(searchTerm, "====");
   return (
-    <div className="d-flex justify-content-between align-items-center">
+    <div className=" ">
       <div className="col-4 ms-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           Search
@@ -13,9 +29,9 @@ const Search = () => {
           className="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <Filter />
     </div>
   );
 };

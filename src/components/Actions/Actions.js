@@ -3,18 +3,13 @@ import React from "react";
 const Actions = () => {
   return (
     <div className="actions ms-2">
-      <ul className="actions_list d-flex">
-        <li className="actions_list_item">
-          <button className="actions_list_item_btn">Hold</button>
-        </li>
-        <li className="actions_list_item">
-          <button className="actions_list_item_btn">UnHold</button>
-        </li>
-        <li className="actions_list_item">
-          <button className="actions_list_item_btn">Print all</button>
-        </li>
-      </ul>
-    </div>
+      <select className="w-25 form-select ms-2">
+        <option value="">Actions</option>
+        <option>Hold</option>
+        <option>UnHold</option>
+        <option>Print all</option>
+      </select>
+      </div>
   );
 };
 
