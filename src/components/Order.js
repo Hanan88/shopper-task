@@ -4,8 +4,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
 
   const getOrder = () => {
-    console.log("1");
-    fetch(process.env.PUBLIC_URL + "Orders.json", {
+    fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -13,7 +12,6 @@ const Order = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data,"data");
         setOrders(data.orders);
       });
   };
