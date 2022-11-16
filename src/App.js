@@ -16,7 +16,7 @@ function App() {
       {open === true ? (
         <Tabs setOpen={setOpen} />
       ) : (
-        <AiOutlineDoubleLeft onClick={handleOpen}></AiOutlineDoubleLeft>
+        <AiOutlineDoubleLeft onClick={handleOpen} className="App_Svg"></AiOutlineDoubleLeft>
       )}
       <MainOrders />
     </div>

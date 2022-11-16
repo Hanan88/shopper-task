@@ -50,8 +50,7 @@ const Order = ({ filterOrders, setFilterOrders }) => {
   return (
     <div>
       <CSVLink data={filterOrders}>
-        Export
-        <CiExport />
+        <CiExport className="table-svg" />
       </CSVLink>
       <table className="table">
         <thead>

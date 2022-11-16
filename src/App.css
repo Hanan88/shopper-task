@@ -12,13 +12,20 @@
   padding: 0;
   width: 100%;
 }
-.App svg {
+.App .App_Svg {
   font-size: 33px;
   position: absolute;
   color: #ffa76c;
   left: 12px;
   top: 5px;
   cursor: pointer;
+}
+.table-svg {
+  font-size: 33px;
+  color: #ffa76c;
+  cursor: pointer;
+  float: right;
+  margin-right: 7px;
 }
 .tabs_list_item {
   font-size: 17px;
