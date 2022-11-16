@@ -92,8 +92,9 @@ table tbody td {
   right: 5%;
   display: grid;
   gap: 15px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
   text-align: left;
+  margin-bottom: 5px;
 }
 label {
   font-size: 12px;
