@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import NewOrder from "./NewOrder";
 import Order from "./Order";
 import Search from "./Filters/Search";
@@ -7,7 +7,8 @@ import Filter from "./Filters/Filter";
 
 const MainOrders = () => {
   const [orders, setOrders] = useState([]);
-
+  const [filterOrders, setFilterOrders] = useState([]);
+  
   const getOrder = () => {
     fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
       headers: {
@@ -18,6 +19,7 @@ const MainOrders = () => {
       .then((response) => response.json())
       .then((data) => {
         setOrders(data.orders);
+        setFilterOrders(data.orders);
       });
   };
 
@@ -28,10 +30,10 @@ const MainOrders = () => {
   return (
     <div className="mainOrder">
       <NewOrder />
-      <Search orders={orders} setOrders={setOrders}/>
+      <Search orders={orders} setOrders={setOrders} filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
       <Filter />
       <Actions />
-      <Order orders={orders} setOrders={setOrders} />
+      <Order orders={orders} setOrders={setOrders} filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
     </div>
   );
 };

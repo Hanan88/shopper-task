@@ -1,6 +1,6 @@
 import React from "react";
 
-const Order = ({ orders, setOrders }) => {
+const Order = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
   const handleChange = (e) => {
     const { name, checked } = e.target;
     if (name === "allSelect") {
@@ -42,8 +42,8 @@ const Order = ({ orders, setOrders }) => {
           </tr>
         </thead>
         <tbody>
-          {orders.length > 0
-            ? orders.map((order) => (
+          {filterOrders.length > 0
+            ? filterOrders.map((order) => (
                 <tr key={order.id}>
                   <td scope="row">
                     <input

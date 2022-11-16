@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = ({ orders, setOrders }) => {
+const Search = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleFilter = (customerName) => {
@@ -14,7 +14,7 @@ const Search = ({ orders, setOrders }) => {
         return item;
       }
     });
-    setOrders(filterData);
+    setFilterOrders(filterData);
   };
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
