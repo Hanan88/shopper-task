@@ -1,6 +1,6 @@
 import React from "react";
 
-const Order = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
+const Order = ({ filterOrders, setFilterOrders }) => {
   const handleChange = (e) => {
     const { name, checked } = e.target;
     if (name === "allSelect") {
@@ -43,34 +43,8 @@ const Order = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
       <td>{order.totalRefund}</td>
     </tr>
   ));
-  const RealData = orders.map((order) => (
-    <tr key={order.id}>
-      <td scope="row">
-        <input
-          type="checkbox"
-          name={order.customerName}
-          onChange={handleChange}
-          checked={order?.isChecked || false}
-        />
-      </td>
-      <td>{order.id}</td>
-      <td>{order.orderDate}</td>
-      <td>{order.billName}</td>
-      <td>{order.shippingName}</td>
-      <td>{order.grandTotalBase}</td>
-      <td>{order.grandTotalPurchased}</td>
-      <td>{order.status}</td>
-      <td>{order.billAddress}</td>
-      <td>{order.shippingAddress}</td>
-      <td>{order.customerEmail}</td>
-      <td>{order.customerGroup}</td>
-      <td>{order.subTotal}</td>
-      <td>{order.shippingFees}</td>
-      <td>{order.customerName}</td>
-      <td>{order.paymentMethod}</td>
-      <td>{order.totalRefund}</td>
-    </tr>
-  ));
+
+  console.log(filterOrders?.isChecked?.toString());
   return (
     <div>
       <table className="table">

@@ -8,7 +8,7 @@ import Filter from "./Filters/Filter";
 const MainOrders = () => {
   const [orders, setOrders] = useState([]);
   const [filterOrders, setFilterOrders] = useState([]);
-  
+
   const getOrder = () => {
     fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
       headers: {
@@ -30,10 +30,10 @@ const MainOrders = () => {
   return (
     <div className="mainOrder">
       <NewOrder />
-      <Search orders={orders} setOrders={setOrders} filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
+      <Search orders={orders} setFilterOrders={setFilterOrders} />
       <Filter />
       <Actions />
-      <Order orders={orders} setOrders={setOrders} filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
+      <Order filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
     </div>
   );
 };

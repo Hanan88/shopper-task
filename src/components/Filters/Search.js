@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
+const Search = ({ orders, setFilterOrders }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleFilter = (customerName) => {
@@ -18,10 +18,9 @@ const Search = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
   };
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
-    handleFilter(searchTerm)
+    handleFilter(searchTerm);
   };
 
-  console.log(searchTerm, "====");
   return (
     <div className=" ">
       <div className="col-4 ms-3">
@@ -34,6 +33,8 @@ const Search = ({ orders, setOrders, filterOrders, setFilterOrders }) => {
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           onChange={handleChange}
+          value={searchTerm}
+          name="searchTerm"
         />
       </div>
     </div>
