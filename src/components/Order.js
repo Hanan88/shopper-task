@@ -1,4 +1,6 @@
 import React from "react";
+import { CSVLink, CSVDownload } from "react-csv";
+import { CiExport } from "react-icons/ci";
 
 const Order = ({ filterOrders, setFilterOrders }) => {
   const handleChange = (e) => {
@@ -47,6 +49,10 @@ const Order = ({ filterOrders, setFilterOrders }) => {
   console.log(filterOrders?.isChecked?.toString());
   return (
     <div>
+      <CSVLink data={filterOrders}>
+        Export
+        <CiExport />
+      </CSVLink>
       <table className="table">
         <thead>
           <tr>
