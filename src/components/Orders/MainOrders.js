@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NewOrder from "./NewOrder";
-import Order from "./Order";
 import Search from "./Filters/Search";
-import Actions from "./Actions/Actions";
 import Filter from "./Filters/Filter";
+import Actions from "./Actions/Actions";
+import Order from "./Order";
 
 const MainOrders = () => {
   const [orders, setOrders] = useState([]);
