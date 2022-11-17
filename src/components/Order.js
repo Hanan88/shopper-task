@@ -46,7 +46,6 @@ const Order = ({ filterOrders, setFilterOrders }) => {
     </tr>
   ));
 
-  console.log(filterOrders?.isChecked?.toString());
   return (
     <div>
       <CSVLink data={filterOrders}>
