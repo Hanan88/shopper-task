@@ -49,6 +49,7 @@ const Filter = () => {
         setStatus(data.status);
       });
   };
+
   useEffect(() => {
     getStatus();
   }, []);
@@ -56,6 +57,7 @@ const Filter = () => {
   const handleOpen = () => {
     setOpen(!open);
   };
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFiltersValue((prevState) => {
@@ -265,7 +267,6 @@ const Filter = () => {
     </div>
   );
 
-  console.log(filtersValue, "filtersValue");
   return (
     <div className="text-end">
       <button type="button" className="btn_filter" onClick={handleOpen}>

@@ -1,13 +1,13 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./App.css";
 import Tabs from "./components/UI/Tabs";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainOrders from "./components/Orders/MainOrders";
-import OrderDetails from "./components/Orders/OrderDetails";
+import OrderDetails from "./components/Orders/OrderDetails/OrderDetails";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
-import { Routes, Route } from "react-router-dom";
 function App() {
   const [open, setOpen] = useState(true);
   const handleOpen = () => {

@@ -1,31 +1,46 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import { CiExport } from "react-icons/ci";
+import { ReactToPrint, useReactToPrint } from "react-to-print";
 
 const Order = ({ filterOrders, setFilterOrders }) => {
-  const navigate = useNavigate();
+  const [selectedOrder, setSelectedOrder] = useState([]);
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "text-print",
+    onAfterPrint: () => console.log("done"),
+  });
 
   const handleChange = (e) => {
     const { name, checked } = e.target;
+    let tempOrder;
     if (name === "allSelect") {
-      let tempOrder = filterOrders.map((order) => {
+      tempOrder = filterOrders.map((order) => {
         return { ...order, isChecked: checked };
       });
       setFilterOrders(tempOrder);
     } else {
-      let tempOrder = filterOrders.map((order) =>
+      tempOrder = filterOrders.map((order) =>
         order.customerName === name ? { ...order, isChecked: checked } : order
       );
       setFilterOrders(tempOrder);
     }
   };
-  const handleRowClick = (row) => {
-    console.log(row);
-    navigate(`/order/${row}`)
+
+  const onPrint = () => {
+    filterOrders.map((order) => {
+      if (order.isChecked?.toString() === "true") {
+        setSelectedOrder([...selectedOrder, order.customerEmail]);
+      }
+    });
+    handlePrint()
   };
+
   const FilterData = filterOrders.map((order) => (
-    <tr key={order.id} onClick={() => handleRowClick(order.id)}>
+    <tr key={order.id}>
       <td scope="row">
         <input
           type="checkbox"
@@ -34,7 +49,9 @@ const Order = ({ filterOrders, setFilterOrders }) => {
           checked={order?.isChecked || false}
         />
       </td>
-      <td>{order.id}</td>
+      <td>
+        <Link to={`/order/${order.id}`}>{order.id}</Link>
+      </td>
       <td>{order.orderDate}</td>
       <td>{order.billName}</td>
       <td>{order.shippingName}</td>
@@ -53,6 +70,7 @@ const Order = ({ filterOrders, setFilterOrders }) => {
     </tr>
   ));
 
+  console.log(selectedOrder, "selectedOrder");
   return (
     <div>
       <CSVLink data={filterOrders}>
@@ -121,6 +139,10 @@ const Order = ({ filterOrders, setFilterOrders }) => {
           </div>
         </div>
       </div>
+
+<div ref={componentRef}>{selectedOrder}</div>
+      <button onClick={onPrint}>Print</button>
+      <button onClick={handlePrint}>dd</button>
     </div>
   );
 };
