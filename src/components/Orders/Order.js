@@ -1,8 +1,11 @@
 import React from "react";
-import { CSVLink, CSVDownload } from "react-csv";
+import { useNavigate } from "react-router-dom";
+import { CSVLink } from "react-csv";
 import { CiExport } from "react-icons/ci";
 
 const Order = ({ filterOrders, setFilterOrders }) => {
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, checked } = e.target;
     if (name === "allSelect") {
@@ -17,8 +20,12 @@ const Order = ({ filterOrders, setFilterOrders }) => {
       setFilterOrders(tempOrder);
     }
   };
+  const handleRowClick = (row) => {
+    console.log(row);
+    navigate(`/order/${row}`)
+  };
   const FilterData = filterOrders.map((order) => (
-    <tr key={order.id}>
+    <tr key={order.id} onClick={() => handleRowClick(order.id)}>
       <td scope="row">
         <input
           type="checkbox"
