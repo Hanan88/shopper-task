@@ -2,16 +2,19 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import { CiExport } from "react-icons/ci";
+import {AiOutlineEye} from "react-icons/ai"
 import { ReactToPrint, useReactToPrint } from "react-to-print";
 
-const Order = ({ filterOrders, setFilterOrders }) => {
-  const [selectedOrder, setSelectedOrder] = useState([]);
+const Order = ({
+  filterOrders,
+  setFilterOrders,
+  selectedOrder,
+  setSelectedOrder,
+}) => {
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    documentTitle: "text-print",
-    onAfterPrint: () => console.log("done"),
   });
 
   const handleChange = (e) => {
@@ -30,13 +33,17 @@ const Order = ({ filterOrders, setFilterOrders }) => {
     }
   };
 
-  const onPrint = () => {
-    filterOrders.map((order) => {
+  const onPrint = async () => {
+    await filterOrders.map((order) => {
       if (order.isChecked?.toString() === "true") {
         setSelectedOrder([...selectedOrder, order.customerEmail]);
+      } else {
+        console.log("non");
+        // setSelectedOrder([...selectedOrder, selectedOrder.filter(e => e !== order.customerEmail)]);
+        // setSelectedOrder(selectedOrder.filter(e => e !== order.customerEmail))
       }
     });
-    handlePrint()
+    handlePrint();
   };
 
   const FilterData = filterOrders.map((order) => (
@@ -49,9 +56,7 @@ const Order = ({ filterOrders, setFilterOrders }) => {
           checked={order?.isChecked || false}
         />
       </td>
-      <td>
-        <Link to={`/order/${order.id}`}>{order.id}</Link>
-      </td>
+      <td>{order.id}</td>
       <td>{order.orderDate}</td>
       <td>{order.billName}</td>
       <td>{order.shippingName}</td>
@@ -67,6 +72,11 @@ const Order = ({ filterOrders, setFilterOrders }) => {
       <td>{order.customerName}</td>
       <td>{order.paymentMethod}</td>
       <td>{order.totalRefund}</td>
+      <td>
+        <Link to={`/order/${order.id}`}>
+          <AiOutlineEye className="view_icons"/>
+        </Link>
+      </td>
     </tr>
   ));
 
@@ -140,9 +150,8 @@ const Order = ({ filterOrders, setFilterOrders }) => {
         </div>
       </div>
 
-<div ref={componentRef}>{selectedOrder}</div>
+      <div ref={componentRef}>{selectedOrder}</div>
       <button onClick={onPrint}>Print</button>
-      <button onClick={handlePrint}>dd</button>
     </div>
   );
 };

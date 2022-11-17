@@ -8,7 +8,7 @@ import Order from "./Order";
 const MainOrders = () => {
   const [orders, setOrders] = useState([]);
   const [filterOrders, setFilterOrders] = useState([]);
-
+  const [selectedOrder, setSelectedOrder] = useState([]);
   const getOrder = () => {
     fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
       headers: {
@@ -33,7 +33,12 @@ const MainOrders = () => {
       <Search orders={orders} setFilterOrders={setFilterOrders} />
       <Filter />
       <Actions />
-      <Order filterOrders={filterOrders} setFilterOrders={setFilterOrders} />
+      <Order
+        filterOrders={filterOrders}
+        setFilterOrders={setFilterOrders}
+        selectedOrder={selectedOrder}
+        setSelectedOrder={setSelectedOrder}
+      />
     </div>
   );
 };

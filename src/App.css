@@ -6,7 +6,7 @@
 .w-40 {
   width: 40% !important;
 }
-a{
+a {
   text-decoration: none;
 }
 
@@ -30,6 +30,11 @@ a{
   cursor: pointer;
   float: right;
   margin-right: 7px;
+}
+.view_icons {
+  font-size: 20px;
+  color: #fb6601;
+  cursor: pointer;
 }
 .tabs_list_item {
   font-size: 17px;
@@ -63,10 +68,6 @@ table thead th {
 
 table tbody td {
   font-size: 12px;
-}
-
-.table tr{
-  cursor: pointer;
 }
 
 .mainOrder {
