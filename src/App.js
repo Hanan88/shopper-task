@@ -5,6 +5,8 @@ import "./App.css";
 import Tabs from "./components/UI/Tabs";
 import MainOrders from "./components/Orders/MainOrders";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
 function App() {
   const [open, setOpen] = useState(true);
   const handleOpen = () => {
@@ -13,12 +15,22 @@ function App() {
 
   return (
     <div className="App">
-      {open === true ? (
-        <Tabs setOpen={setOpen} />
-      ) : (
-        <AiOutlineDoubleLeft onClick={handleOpen} className="App_Svg"></AiOutlineDoubleLeft>
-      )}
-      <MainOrders />
+      <div className="d-flex">
+        {open === true ? (
+          <Tabs setOpen={setOpen} />
+        ) : (
+          <div>
+            <AiOutlineDoubleLeft
+              onClick={handleOpen}
+              className="App_Svg"
+            ></AiOutlineDoubleLeft>
+          </div>
+        )}
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/orders" element={<MainOrders />} />
+        </Routes>
+      </div>
     </div>
   );
 }

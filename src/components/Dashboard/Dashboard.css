@@ -1,0 +1,9 @@
+.dashboard {
+    min-width: 86%;
+    min-height: 100vh;
+    /* background: #205964; */
+}
+.dashboard_header{
+    /* color: aliceblue; */
+    text-align: center;
+}
