@@ -108,3 +108,8 @@ label {
   letter-spacing: 0.5px;
 }
 /* ================= */
+@media screen {
+  .toPrint {
+    display: none;
+  }
+}
