@@ -55,7 +55,6 @@ const Order = ({ filterOrders, setFilterOrders, selectedOrder }) => {
     </tr>
   ));
 
-  const re = [...new Set(selectedOrder)]
   console.log(selectedOrder, "selectedOrder");
   return (
     <div>
@@ -88,7 +87,6 @@ const Order = ({ filterOrders, setFilterOrders, selectedOrder }) => {
         </thead>
         <tbody>{filterOrders ? FilterData : null}</tbody>
       </table>
-      
     </div>
   );
 };

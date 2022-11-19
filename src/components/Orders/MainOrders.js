@@ -10,6 +10,8 @@ const MainOrders = () => {
   const [orders, setOrders] = useState([]);
   const [filterOrders, setFilterOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState([]);
+  const componentRef = useRef();
+
   const getOrder = () => {
     fetch(process.env.PUBLIC_URL + "Data/Orders.json", {
       headers: {
@@ -28,25 +30,23 @@ const MainOrders = () => {
     getOrder();
   }, []);
 
-
-
-
-  const componentRef = useRef();
-
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
-
-
+  // const withoutDuplicates = [...new Set(fruits)];
   const onPrint = async () => {
-    console.log("klkl");
+    
     await filterOrders.map((order) => {
       if (order.isChecked === true) {
-        console.log(order.isChecked, "++++++");
-        setSelectedOrder([selectedOrder, order.customerEmail]);
+        console.log("1");
+        setSelectedOrder((prev) => [ order.customerEmail]);
+        console.log("2");
+        // setSelectedOrder([...new Set(selectedOrder)])
+        console.log("3");
       } else {
-        console.log("non");
+        setSelectedOrder((prev) =>
+          prev.filter((order) => order !== order.customerEmail)
+        );
         // setSelectedOrder([...selectedOrder, selectedOrder.filter(e => e !== order.customerEmail)]);
         // setSelectedOrder(selectedOrder.filter(e => e !== order.customerEmail))
       }
@@ -54,13 +54,12 @@ const MainOrders = () => {
     handlePrint();
   };
 
-
   return (
     <div className="mainOrder">
       <NewOrder />
       <Search orders={orders} setFilterOrders={setFilterOrders} />
       <Filter />
-      <Actions onPrint={onPrint}/>
+      <Actions onPrint={onPrint} />
       <Order
         filterOrders={filterOrders}
         setFilterOrders={setFilterOrders}
